@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 merah="\033[1;31m"  #REDTERANG
 akuu="\033[33m"  #yello
 Green="\e[92;1m"
