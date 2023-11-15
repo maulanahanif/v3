@@ -187,6 +187,14 @@ function is_root() {
 
 }
 
+# Information vps
+curl "ipinfo.io/org?token=7a814b6263b02c" > /root/.isp
+curl "ipinfo.io/city?token=7a814b6263b02c" > /root/.city
+curl "ipinfo.io/region?token=7a814b6263b02c" > /root/.region
+curl "ipinfo.io/country?token=7a814b6263b02c" > /root/.code-negara
+curl "ipinfo.io/loc?token=7a814b6263b02c" > /root/.map
+curl "ipinfo.io/timezone?token=7a814b6263b02c" > /root/.timezone
+
 # Buat direktori xray
 print_install "Membuat direktori xray"
     mkdir -p /etc/xray
@@ -979,10 +987,15 @@ cat >/etc/cron.d/logclean <<-END
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 		*/20 * * * * root /usr/local/sbin/clearlog
     END
-cat >/etc/cron.d/limit_ssh <<-END
+cat >/etc/cron.d/limssh <<-END
 		SHELL=/bin/sh
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 		*/60 * * * * root /usr/local/sbin/limit-ip-ssh
+    END
+cat >/etc/cron.d/bckpp <<-END
+		SHELL=/bin/sh
+		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+		3 0 * * * root /usr/local/sbin/backup
     END
     chmod 644 /root/.profile
 	
