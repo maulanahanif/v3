@@ -1,13 +1,9 @@
 #!/bin/bash
-apt upgrade -y
-apt update -y
-merah="\033[1;31m"  #REDTERANG
-akuu="\033[33m"  #yello
+### Color
 Green="\e[92;1m"
 RED="\033[31m"
 YELLOW="\033[33m"
 BLUE="\033[36m"
-z="\033[96m"
 FONT="\033[0m"
 GREENBG="\033[42;37m"
 REDBG="\033[41;37m"
@@ -17,22 +13,6 @@ GRAY="\e[1;30m"
 NC='\e[0m'
 red='\e[1;31m'
 green='\e[0;32m'
-ISP=$(cat /etc/xray/isp)
-CITY=$(cat /etc/xray/city)
-##Logo
-function LOGO() {
-   echo -e "
-    ┌───────────────────────────────────────────────┐
- ───│                                               │───
- ───│    $Green┌─┐┬ ┬┌┬┐┌─┐┌─┐┌─┐┬─┐┬┌─┐┌┬┐  ┬  ┬┌┬┐┌─┐$NC   │───
- ───│    $Green├─┤│ │ │ │ │└─┐│  ├┬┘│├─┘ │   │  │ │ ├┤ $NC   │───
- ───│    $Green┴ ┴└─┘ ┴ └─┘└─┘└─┘┴└─┴┴   ┴   ┴─┘┴ ┴ └─┘$NC   │───
-    │    ${YELLOW}Copyright${FONT} (C)$GRAY https://github.com/YSSHstore$NC     │
-    └───────────────────────────────────────────────┘
-         ${RED}Autoscript xray vpn lite (multi port)${FONT}    
-${RED}Make sure the internet is smooth when installing the script${FONT}
-        "
-}
 # ===================
 clear
   # // Exporint IP AddressInformation
@@ -47,11 +27,11 @@ clear;clear;clear
 echo -e "${YELLOW}----------------------------------------------------------${NC}"
 echo -e "  Welcome To YSSHstore Project Script Installer ${YELLOW}(${NC}${green} Stable Edition ${NC}${YELLOW})${NC}"
 echo -e "     This Will Quick Setup VPN Server On Your Server"
-echo -e "         Author : ${green}Kytxz ${NC}${YELLOW}(${NC} ${green}YSSHstore Project ${NC}${YELLOW})${NC}"
-echo -e "       © Recode By YSSHstore Project ${YELLOW}(${NC} 2023 ${YELLOW})${NC}"
+echo -e "         Author : ${green}Kytxz  ${NC}${YELLOW}(${NC} ${green}Project ${NC}${YELLOW})${NC}"
+echo -e "       © Recode By YSSHstore ${YELLOW}(${NC} 2023 ${YELLOW})${NC}"
 echo -e "${YELLOW}----------------------------------------------------------${NC}"
 echo ""
-sleep 3
+sleep 5
 ###### IZIN SC 
 ipsaya=$(wget -qO- ipinfo.io/ip)
 data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
@@ -63,7 +43,7 @@ checking_sc() {
     echo -ne
   else
     echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    echo -e "\033[42m         404 NOT FOUND AUTOSCRIPT          \033[0m"
+    echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
     echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     echo -e ""
     echo -e "            ${RED}PERMISSION DENIED !${NC}"
@@ -120,6 +100,10 @@ green='\e[0;32m'
 NC='\e[0m'
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
+echo -e "\e[32mloading...\e[0m"
+clear
+#IZIN SCRIPT
+MYIP=$(curl -sS ipv4.icanhazip.com)
 echo -e "\e[32mloading...\e[0m" 
 clear
 # Version sc
@@ -174,9 +158,9 @@ function print_ok() {
     echo -e "${OK} ${BLUE} $1 ${FONT}"
 }
 function print_install() {
-	echo -e "${green} ────────────────────────── ${FONT}"
+	echo -e "${green} =============================== ${FONT}"
     echo -e "${YELLOW} # $1 ${FONT}"
-	echo -e "${green} ────────────────────────── ${FONT}"
+	echo -e "${green} =============================== ${FONT}"
     sleep 1
 }
 
@@ -186,9 +170,9 @@ function print_error() {
 
 function print_success() {
     if [[ 0 -eq $? ]]; then
-		echo -e "${green} ────────────────────────── ${FONT}"
+		echo -e "${green} =============================== ${FONT}"
         echo -e "${Green} # $1 berhasil dipasang"
-		echo -e "${green} ────────────────────────── ${FONT}"
+		echo -e "${green} =============================== ${FONT}"
         sleep 2
     fi
 }
@@ -270,7 +254,7 @@ else
 fi
 }
 
-# YSSHstore PROJECT
+# ALVI TUNNEL
 clear
 function nginx_install() {
     # // Checking System
@@ -294,8 +278,6 @@ function base_package() {
     print_install "Menginstall Packet Yang Dibutuhkan"
     apt install zip pwgen openssl netcat socat cron bash-completion -y
     apt install figlet -y
-    apt install lolcat -y
-    gem install lolcat
     apt update -y
     apt upgrade -y
     apt dist-upgrade -y
@@ -304,7 +286,7 @@ function base_package() {
     systemctl enable chrony
     systemctl restart chrony
     chronyc sourcestats -v
-    chronyc tracking -y
+    chronyc tracking -v
     apt install ntpdate -y
     ntpdate pool.ntp.org
     apt install sudo -y
@@ -325,7 +307,6 @@ clear
 function pasang_domain() {
 echo -e ""
 clear
-LOGO
     echo -e "   .----------------------------------."
 echo -e "   |\e[1;32mPlease Select a Domain Type Below \e[0m|"
 echo -e "   '----------------------------------'"
@@ -386,10 +367,10 @@ function password_default() {
 <code>Exp Script :</code> <code>$exp</code>
 <code>─────────────────────</code>
 <i>Automatic Notification from</i>
-<i>Github YSSHstore</i> 
-"'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ🐳","url":"https://t.me/YSSHstore"},{"text":"ɪɴꜱᴛᴀʟʟ🐬","url":"https://t.me/yogztesti"}]]}'
-    curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
-    
+<i>Github YSSHstore</i>
+"
+
+   curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
 
 clear
@@ -476,12 +457,14 @@ bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release
  
     # // Ambil Config Server
     wget -O /etc/xray/config.json "${REPO}xray/config.json" >/dev/null 2>&1
+    #wget -O /usr/local/bin/xray "${REPO}xray/xray.linux.64bit" >/dev/null 2>&1
     wget -O /etc/systemd/system/runn.service "${REPO}xray/runn.service" >/dev/null 2>&1
+    #chmod +x /usr/local/bin/xray
     domain=$(cat /etc/xray/domain)
     IPVS=$(cat /etc/xray/ipvps)
     print_success "Core Xray 1.8.1 Latest Version"
     
-    # Settings UP Nginx Server
+    # Settings UP Nginix Server
     clear
     curl -s ipinfo.io/city >>/etc/xray/city
     curl -s ipinfo.io/org | cut -d " " -f 2-10 >>/etc/xray/isp
@@ -597,21 +580,23 @@ print_success "Password SSH"
 
 function udp_mini(){
 clear
-print_install "Memasang Service Limit"
+print_install "Memasang Service Limit Quota"
+wget -q -O /usr/local/sbin/quota "${REPO}limit/quota"
+chmod +x /usr/local/sbin/quota
+chmod + x /usr/local/sbin/quota
+cd /usr/local/sbin/
+sed -i 's/\r//' quota
+cd
 wget -q -O /usr/bin/limit-ip "${REPO}limit/limit-ip"
 chmod +x /usr/bin/*
 cd /usr/bin
 sed -i 's/\r//' limit-ip
 cd
-wget -q -O /usr/local/sbin/quota "${REPO}limit/quota"
-chmod +x /usr/local/sbin/quota
-cd /usr/local/sbin/
-sed -i 's/\r//' quota
-cd
 clear
+#SERVICE LIMIT ALL IP
 cat >/etc/systemd/system/vmip.service << EOF
 [Unit]
-Description=my
+Description=My
 ProjectAfter=network.target
 
 [Service]
@@ -628,7 +613,7 @@ systemctl enable vmip
 
 cat >/etc/systemd/system/vlip.service << EOF
 [Unit]
-Description=my
+Description=My
 ProjectAfter=network.target
 
 [Service]
@@ -645,7 +630,7 @@ systemctl enable vlip
 
 cat >/etc/systemd/system/trip.service << EOF
 [Unit]
-Description=my
+Description=My
 ProjectAfter=network.target
 
 [Service]
@@ -659,8 +644,9 @@ EOF
 systemctl daemon-reload
 systemctl restart trip
 systemctl enable trip
+#SERVICE LIMIT QUOTA
 
-#LIMIT QUOTA VMESS
+#SERVICE VMESS
 cat >/etc/systemd/system/qmv.service << EOF
 [Unit]
 Description=My
@@ -713,7 +699,6 @@ EOF
 systemctl daemon-reload
 systemctl restart qmtr
 systemctl enable qmtr
-
 # // Installing UDP Mini
 mkdir -p /usr/local/kyt/
 wget -q -O /usr/local/kyt/udp-mini "${REPO}badvpn/udp-mini"
@@ -733,7 +718,7 @@ systemctl disable udp-mini-3
 systemctl stop udp-mini-3
 systemctl enable udp-mini-3
 systemctl start udp-mini-3
-print_success "Limit Service"
+print_success "Limit Quota Service"
 }
 
 function ssh_slow(){
@@ -828,9 +813,9 @@ account default
 host smtp.gmail.com
 port 587
 auth on
-user oceantestdigital@gmail.com
-from oceantestdigital@gmail.com
-password jokerman77 
+user alvibackup9@gmail.com
+from alvibackup9@gmail.com
+password wbgqpokjbkkjjiet 
 logfile ~/.msmtp.log
 EOF
 chown -R www-data:www-data /etc/msmtprc
@@ -841,7 +826,7 @@ print_success "Backup Server"
 clear
 function ins_swab(){
 clear
-print_install "Memasang Swap 1 GB"
+print_install "Memasang Swap 1 G"
 gotop_latest="$(curl -s https://api.github.com/repos/xxxserxxx/gotop/releases | grep tag_name | sed -E 's/.*"v(.*)".*/\1/' | head -n 1)"
     gotop_link="https://github.com/xxxserxxx/gotop/releases/download/v$gotop_latest/gotop_v"$gotop_latest"_linux_amd64.deb"
     curl -sL "$gotop_link" -o /tmp/gotop.deb
@@ -861,7 +846,7 @@ gotop_latest="$(curl -s https://api.github.com/repos/xxxserxxx/gotop/releases | 
     chronyc tracking -v
     
     wget ${REPO}bbr.sh &&  chmod +x bbr.sh && ./bbr.sh
-print_success "Swap 1 GB"
+print_success "Swap 1 G"
 }
 
 function ins_Fail2ban(){
@@ -993,22 +978,22 @@ EOF
 cat >/etc/cron.d/xp_all <<-END
 		SHELL=/bin/sh
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-		0 2 * * * root /usr/local/sbin/xp
+		2 0 * * * root /usr/local/sbin/xp
 	END
-cat >/etc/cron.d/bckpbot <<-END
-		SHELL=/bin/sh
-		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-		0 2 * * * root /usr/local/sbin/backup
-    END
 cat >/etc/cron.d/logclean <<-END
 		SHELL=/bin/sh
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 		*/20 * * * * root /usr/local/sbin/clearlog
     END
-cat >/etc/cron.d/limit_ssh <<-END
+cat >/etc/cron.d/limssh <<-END
 		SHELL=/bin/sh
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 		*/60 * * * * root /usr/local/sbin/limit-ip-ssh
+    END
+cat >/etc/cron.d/bckpp <<-END
+		SHELL=/bin/sh
+		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+		3 0 * * * root /usr/local/sbin/backup
     END
     chmod 644 /root/.profile
 	
@@ -1111,36 +1096,56 @@ clear
 instal
 echo ""
 history -c
+rm -rf /root/menu
 rm -rf /root/*.zip
 rm -rf /root/*.sh
 rm -rf /root/LICENSE
 rm -rf /root/README.md
 rm -rf /root/domain
+#sudo hostnamectl set-hostname $user
 secs_to_human "$(($(date +%s) - ${start}))"
 echo ""
-echo -e ""
-clear
-echo " 𝗦𝘂𝗰𝗰𝗲𝘀 𝗮𝘁 𝗥𝗲𝗴𝗶𝘀𝘁𝗿𝘆" | tee -a log-install.txt
-echo "    𝗩𝗣𝗦 𝗜𝗡𝗙𝗢" | tee -a log-install.txt
-echo "    ◇━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a log-install.txt
-echo "    Isp Vps     : $ISP" | tee -a log-install.txt
-echo "    Domain      : $domain" | tee -a log-install.txt
-echo "    IP Vps      : $MYIP" | tee -a log-install.txt
-echo "    OS Vps      : $OS_Name" | tee -a log-install.txt
-echo "    User Script : $USRSC" | tee -a log-install.txt
-echo "    Tanggal     : $tanggal" | tee -a log-install.txt
-echo "    Exp Vps     : $exp" | tee -a log-install.txt
-echo "    ◇━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a log-install.txt
-echo "    Hostname    : ${HOSTNAME}" | tee -a log-install.txt
-echo "    Kernel      : $Kernel" | tee -a log-install.txt
-echo "    Arch        : $Arch" | tee -a log-install.txt
-echo "    Ram Total   : $Ram_Total MB" | tee -a log-install.txt
-echo "    Ram Used    : $Ram_Usage MB" | tee -a log-install.txt
-echo "    ◇━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a log-install.txt
-echo "  ⚠︎𝘽𝙮 YogzVPN 𝙋𝙧𝙤𝙟𝙚𝙘𝙩 𝙈𝙖𝙣𝙖𝙜𝙚𝙧 𝘾𝙤𝙢𝙢𝙪𝙣𝙞𝙩𝙮⚠︎" | tee -a log-install.txt
-echo "    ◇━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a log-install.txt
+echo " "
+echo "=====================-[ YSSHstore ]-===================="
 echo ""
-echo "INSTAL SUKSES DAN LANCAR" | tee -a log-install.txt
+echo "------------------------------------------------------------"
+echo ""
+echo ""
+echo "   >>> Service & Port"  | tee -a log-install.txt
+echo "   - SlowDNS SSH              : ALL Port SSH"  | tee -a log-install.txt
+echo "   - OpenSSH                  : 22"  | tee -a log-install.txt
+echo "   - SSH Websocket            : 80 [ON]" | tee -a log-install.txt
+echo "   - SSH SSL Websocket        : 443" | tee -a log-install.txt
+echo "   - OpenVPN Websocket SSL    : 1194" | tee -a log-install.txt
+echo "   - OpenVPN SSL              : 1194" | tee -a log-install.txt
+echo "   - OpenVPN TCP              : 1194" | tee -a log-install.txt
+echo "   - OpenVPN UDP              : 2200" | tee -a log-install.txt
+echo "   - Stunnel4                 : 222, 777" | tee -a log-install.txt
+echo "   - Dropbear                 : 109, 143" | tee -a log-install.txt
+echo "   - Badvpn                   : 7100-7900" | tee -a log-install.txt
+echo "   - Nginx                    : 81" | tee -a log-install.txt
+echo "   - Vmess WS TLS             : 443" | tee -a log-install.txt
+echo "   - Vless WS TLS             : 443" | tee -a log-install.txt
+echo "   - Trojan WS TLS            : 443" | tee -a log-install.txt
+echo "   - Shadowsocks WS TLS       : 443" | tee -a log-install.txt
+echo "   - Vmess WS none TLS        : 80" | tee -a log-install.txt
+echo "   - Vless WS none TLS        : 80" | tee -a log-install.txt
+echo "   - Trojan WS none TLS       : 80" | tee -a log-install.txt
+echo "   - Shadowsocks WS none TLS  : 80" | tee -a log-install.txt
+echo "   - Vmess gRPC               : 443" | tee -a log-install.txt
+echo "   - Vless gRPC               : 443" | tee -a log-install.txt
+echo "   - Trojan gRPC              : 443" | tee -a log-install.txt
+echo "   - Shadowsocks gRPC         : 443" | tee -a log-install.txt
+echo ""
+echo ""
+echo "------------------------------------------------------------"
+echo ""
+echo "=====================-[ YSSHstore ]-===================="
+echo -e ""
+echo ""
+echo "" | tee -a log-install.txt
+echo -e ""
 echo -e "${green} Script Successfull Installed"
-sleep 5
+echo ""
+read -p "$( echo -e "Press ${YELLOW}[ ${NC}${YELLOW}Enter${NC} ${YELLOW}]${NC} For Reboot") "
 reboot
