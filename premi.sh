@@ -25,10 +25,10 @@ clear;clear;clear
 
   # // Banner
 echo -e "${YELLOW}----------------------------------------------------------${NC}"
-echo -e "  Welcome To ALVI Project Script Installer ${YELLOW}(${NC}${green} Stable Edition ${NC}${YELLOW})${NC}"
+echo -e "  Welcome To YSSHstore Project Script Installer ${YELLOW}(${NC}${green} Stable Edition ${NC}${YELLOW})${NC}"
 echo -e "     This Will Quick Setup VPN Server On Your Server"
-echo -e "         Auther : ${green}alvi  ${NC}${YELLOW}(${NC} ${green}tunnel ${NC}${YELLOW})${NC}"
-echo -e "       © Recode By ALVI TUNNELt ${YELLOW}(${NC} 2023 ${YELLOW})${NC}"
+echo -e "         Author : ${green}Kytxz  ${NC}${YELLOW}(${NC} ${green}Project ${NC}${YELLOW})${NC}"
+echo -e "       © Recode By YSSHstore ${YELLOW}(${NC} 2023 ${YELLOW})${NC}"
 echo -e "${YELLOW}----------------------------------------------------------${NC}"
 echo ""
 sleep 5
@@ -50,8 +50,8 @@ checking_sc() {
     echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
     echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
     echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      \033[0;36mTelegram${NC} t.me/Alvi_cell"
-    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6282183496832"
+    echo -e "      \033[0;36mTelegram${NC} t.me/YSSHstore"
+    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6281215360549"
     echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     exit
   fi
